@@ -7,17 +7,21 @@
 //
 
 #import "InputCollector.h"
+#import "Contact.h"
 
 @implementation InputCollector
 
 - (NSString *)inputFromPrompt:(NSString *)promptString{
-    if ([promptString  isEqualToString: @"quit"])
+    char inputChars[255];
+    fgets(inputChars,255,stdin);
+    NSString *inputString = [NSString stringWithUTF8String:inputChars];
+    if ([inputString  isEqualToString: @"quit"])
         return 0;
-    if ([promptString isEqualToString:@"new"]){
-        
+    if ([inputString isEqualToString:@"new"]){
+        return @"new";
     }
         
-    return promptString;
+    return inputString;
     
 }
 

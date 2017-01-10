@@ -9,13 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "InputCollector.h"
 #import "Contact.h"
+#import "ContactList.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         InputCollector *collector = [[InputCollector alloc]init];
-        Contact *contact = [[Contact alloc]init];
-        contact.name = [collector inputFromPrompt:@"Enter your username:"];
-        contact.email = [collector inputFromPrompt:@"Enter your email:"];
+        ContactList *contactList = [[ContactList alloc]init];
+        while(YES){
+            Contact *contact = [[Contact alloc]init];
+            NSString *inputString = [collector inputFromPrompt:@"Enter command: new or quit: "];
+            if ([inputString isEqualToString:@"new"]){
+                contact.name = [collector inputFromPrompt:@"Enter your username:"];
+                contact.email = [collector inputFromPrompt:@"Enter your email:"];
+            }
+            
+        }
+        
         
         
         

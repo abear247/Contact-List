@@ -10,6 +10,8 @@
 
 @interface ContactList : NSObject
 
- 
+@property (nonatomic) NSMutableArray *contactList;
+
+//-(void)addContact:(Contact *)newContact;
 
 @end

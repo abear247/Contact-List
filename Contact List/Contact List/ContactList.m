@@ -9,5 +9,15 @@
 #import "ContactList.h"
 
 @implementation ContactList
+@synthesize contactList;
+
+-(instancetype)init{
+    self = [super init];
+    if (self){
+        contactList = [[NSMutableArray alloc] init];
+    }
+        
+    return self;
+}
 
 @end
