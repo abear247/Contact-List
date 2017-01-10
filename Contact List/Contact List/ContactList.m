@@ -20,4 +20,8 @@
     return self;
 }
 
+-(void)addContact:(Contact *)newContact{
+    [self.contactList addObject:newContact];
+}
+
 @end

@@ -13,16 +13,11 @@
 
 - (NSString *)inputFromPrompt:(NSString *)promptString{
     char inputChars[255];
+    printf("%s",[promptString UTF8String]);
     fgets(inputChars,255,stdin);
     NSString *inputString = [NSString stringWithUTF8String:inputChars];
-    if ([inputString  isEqualToString: @"quit"])
-        return 0;
-    if ([inputString isEqualToString:@"new"]){
-        return @"new";
-    }
-        
-    return inputString;
-    
+    NSString *input = [inputString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return input;
 }
 
 
