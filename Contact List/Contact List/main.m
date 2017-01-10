@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
         ContactList *contacts = [[ContactList alloc]init];
         while(YES){
             Contact *contact = [[Contact alloc]init];
-            NSString *inputString = [collector inputFromPrompt:@"new - New contact \nquit - Exits program  \nshow - Contact at index \nlist - List contacts \nEnter command: "];
+            NSString *inputString = [collector inputFromPrompt:@"new - New contact \nquit - Exits program  \nshow - Contact at index \nlist - List contacts  \nEnter command: "];
             if ([inputString isEqualToString:@"quit"])
                 break;
             if ([inputString isEqualToString:@"new"]){
@@ -27,11 +27,17 @@ int main(int argc, const char * argv[]) {
             }
             if ([inputString isEqualToString:@"show"]){
                 NSInteger index = [[collector inputFromPrompt:@"Enter contact id #:"] intValue];
-                if (contacts.contactList[index]){
-                    NSLog(@"\nName: %@ \nEmail: %@", contacts.contactList[index].name,contacts.contactList[index].email);
+                id a;
+                @try {
+                    a = contacts.contactList[index];
                 }
-                else
+                @catch (NSException *exception) {
                     NSLog(@"not found");
+                    continue;
+                }
+                
+                NSLog(@"\nName: %@ \nEmail: %@", contacts.contactList[index].name,contacts.contactList[index].email);
+
             }
             if ([inputString isEqualToString:@"list"]){
                 NSInteger i = 0;
