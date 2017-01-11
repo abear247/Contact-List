@@ -12,5 +12,6 @@
 
 @property NSString *name;
 @property NSString *email;
+@property NSDictionary *phoneNumbers;
 
 @end
