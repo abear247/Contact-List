@@ -23,8 +23,8 @@ int main(int argc, const char * argv[]) {
             
             if ([inputString isEqualToString:@"new"]){
                 bool broken = NO;
-                contact.name = [collector inputFromPrompt:@"Enter your full name:"];
-                contact.email = [collector inputFromPrompt:@"Enter your email:"];
+                contact.name = [collector inputFromPrompt:@"Enter full name:"];
+                contact.email = [collector inputFromPrompt:@"Enter email:"];
                 for(Contact *currentContact in contacts.contactList){
                     if ([contact.name isEqualToString:currentContact.name] && [contact.email isEqualToString:currentContact.email]){
                         NSLog(@"already exists");
@@ -32,9 +32,26 @@ int main(int argc, const char * argv[]) {
                     }
                     
                 }
+                while(YES){
+                    NSString *exit = [collector inputFromPrompt:@"Enter phone number? 'yes' to add or 'done' to exit:"];
+                    if ([exit isEqualToString:@"done"])
+                        break;
+                    
+                    NSString *phoneName = [collector inputFromPrompt:@"Enter phone name:"];
+                    NSString *number = [collector inputFromPrompt:@"Enter phone number:"];
+                    if([exit isEqualToString:@"yes"]){
+                        if(!contact.phoneNumbers){
+                            contact.phoneNumbers = [NSMutableDictionary dictionaryWithObjectsAndKeys:number,phoneName, nil];
+                            
+                        }
+                    else
+                        [contact.phoneNumbers setObject:number forKey:phoneName];
+                    }
+                    
+                }
                 if(!broken){
-                [contacts addContact:contact];
-                NSLog(@"\n");
+                    [contacts addContact:contact];
+                    NSLog(@"\n");
                 }
             }
             
@@ -69,9 +86,11 @@ int main(int argc, const char * argv[]) {
                 }
             }
             
-            if ([inputString isEqualToString:@"add number"]){
-                
-            }
+//            if ([inputString isEqualToString:@"add number"]){
+//                NSString *mobile = [collector inputFromPrompt:@"Enter your full name:"];
+//                NSString *number = [collector inputFromPrompt:@"Enter your email:"];
+//                
+//            }
           
             
         }
