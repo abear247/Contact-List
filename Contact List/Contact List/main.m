@@ -23,15 +23,17 @@ int main(int argc, const char * argv[]) {
             
             if ([inputString isEqualToString:@"new"]){
                 bool broken = NO;
-                contact.name = [collector inputFromPrompt:@"Enter full name:"];
                 contact.email = [collector inputFromPrompt:@"Enter email:"];
                 for(Contact *currentContact in contacts.contactList){
-                    if ([contact.name isEqualToString:currentContact.name] && [contact.email isEqualToString:currentContact.email]){
+                    if ([contact.email isEqualToString:currentContact.email]){
                         NSLog(@"already exists");
                         broken = YES;
                     }
                     
                 }
+                if(broken)
+                    continue;
+                contact.name = [collector inputFromPrompt:@"Enter full name:"];
                 while(YES){
                     NSString *exit = [collector inputFromPrompt:@"Enter phone number? 'yes' to add or 'done' to exit:"];
                     if ([exit isEqualToString:@"done"])
@@ -49,10 +51,10 @@ int main(int argc, const char * argv[]) {
                     }
                     
                 }
-                if(!broken){
-                    [contacts addContact:contact];
-                    NSLog(@"\n");
-                }
+                
+                [contacts addContact:contact];
+                NSLog(@"\n");
+                
             }
             
             if ([inputString isEqualToString:@"show"]){
